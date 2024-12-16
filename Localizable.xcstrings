@@ -1,0 +1,33 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "description" : {
+      "extractionState" : "manual"
+    },
+    "feels_like" : {
+      "extractionState" : "manual"
+    },
+    "humidity" : {
+      "extractionState" : "manual"
+    },
+    "Loading weather…" : {
+      "extractionState" : "manual"
+    },
+    "name" : {
+      "extractionState" : "manual"
+    },
+    "temp" : {
+      "extractionState" : "manual"
+    },
+    "temp_max" : {
+      "extractionState" : "manual"
+    },
+    "temp_min" : {
+      "extractionState" : "manual"
+    },
+    "weather" : {
+      "extractionState" : "manual"
+    }
+  },
+  "version" : "1.0"
+}
