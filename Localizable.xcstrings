@@ -1,32 +1,91 @@
 {
   "sourceLanguage" : "ko",
   "strings" : {
-    "description" : {
-      "extractionState" : "manual"
+    "%@" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@"
+          }
+        }
+      }
     },
-    "feels_like" : {
-      "extractionState" : "manual"
+    "%@°C" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@°C"
+          }
+        }
+      }
     },
-    "humidity" : {
-      "extractionState" : "manual"
+    "feels_like: %@ °C" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "체감기온 %@ °C"
+          }
+        }
+      }
     },
-    "Loading weather…" : {
-      "extractionState" : "manual"
+    "Hello World" : {
+
     },
-    "name" : {
-      "extractionState" : "manual"
+    "humidity %lldmm" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "강수량 %lldmm"
+          }
+        }
+      }
     },
-    "temp" : {
-      "extractionState" : "manual"
+    "Loading weather..." : {
+
     },
-    "temp_max" : {
-      "extractionState" : "manual"
+    "pressure %lldhPa" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기압 %lldhPa"
+          }
+        }
+      }
     },
-    "temp_min" : {
-      "extractionState" : "manual"
+    "speed %lfm/s" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "풍속 %lfm/s"
+          }
+        }
+      }
     },
-    "weather" : {
-      "extractionState" : "manual"
+    "temp_max: %@ °C" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최고기온 %@ °C"
+          }
+        }
+      }
+    },
+    "temp_min: %@ °C" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최저기온 %@ °C"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

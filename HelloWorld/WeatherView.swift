@@ -2,66 +2,139 @@ import SwiftUI
 
 struct WeatherView: View {
     
-    @StateObject var networkManager = NetworkManager() // 날씨 데이터를 가져올 인터넷
-//    @State private var showTranslation = false
-    
+    @StateObject var networkManager = NetworkManager() // Manage weather data fetching
+    @State var currentDate = Date() // Current date
+
+    // Date formatter for displaying the date
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .full
+        return formatter
+    }()
 
     var body: some View {
         ZStack {
-                Color(.systemBlue.withAlphaComponent(1))
-                VStack(alignment: .center, spacing: 10) {
-             
-                    if let weather = networkManager.weatherData {
-                        //  인터넷이 연결되면 날씨 데이터를 UI에 보여주는 optional binding.
-                        HStack {
+            Color(.systemBlue.withAlphaComponent(1))
+                .ignoresSafeArea()
+                
+            
+            if let weather = networkManager.weatherData {
+                ScrollView() {
+                    VStack(alignment: .center, spacing: 20) {
+                        
+                        VStack {
+                            // Current date
+                            Text("\(currentDate, formatter: dateFormatter)")
+                                .font(.headline.monospaced())
+                                .foregroundStyle(.white)
+                                .padding(.top)
+                            HStack {
+                                // City name
+                                Text("\(weather.name)")
+                                    .font(.title2.bold())
+                                    .foregroundStyle(.white)
+                                    .padding(1)
+                                
+                                // Temperature
+                                Text("\(String(format: "%.1f", weather.main.temp - 273.15))°C")
+                                    .font(.title2.bold())
+                                    .foregroundStyle(.white)
+                                    .padding(1)
+                            }
+                            .padding(10)
+                            // Weather description
+                            Text("\(weather.weather.first?.description.capitalized ?? "Unknown")")
+                                .font(.title3.bold())
+                                .foregroundStyle(.white)
+                            
                             
                         }
-                        VStack(alignment: .center, spacing: 5) {
-//                            Color(.systemBlue.withAlphaComponent(1))
-                            Text("\(weather.name)")
-                                .font(.title.monospaced())
-                                .foregroundStyle(.white)
-                                .padding(5)
-
-                            // 기온을 Celsius,섭씨로 표기.
-                            Text("\(String(format:"%.1f", weather.main.temp - 273.15))°C")
-                                .font(.largeTitle.monospaced())
-                                .foregroundStyle(.white)
-                                .padding(5)
-                            // 기상
-                            Text("\(String( weather.weather.first?.description.capitalized ?? "Unknown"))" )
-                                .font(.headline.monospaced())
-                                .foregroundStyle(.white)
-                        }
-                        // 체감온도
-                        Text("feels_like: \(String(format: "%.1f", weather.main.feels_like - 273.15)) °C")
-                            .font(.headline.monospaced())
-                            .foregroundStyle(.white)
-                        // 최고 기온
-                        Text("temp_max: \(String (format: "%.1f", weather.main.temp_max - 273.15) ) °C")
-                                .font(.headline.monospaced())
-                                .foregroundStyle(.white)
-                        // 최저 기온
-                        Text("temp_min: \(String(format: "%.1f", weather.main.temp_min - 273.15)) °C")
-                            .font(.headline.monospaced())
-                            .foregroundStyle(.white)
-                    } else {
-                        // 날씨 데이터가 기져오는 동안 나타나는 메시지
-                        Text("Loading weather...")
-                            .font(.headline)
-                            .foregroundStyle(.white)
-                            .onAppear {
-                                // Trigger the weather request
-                                networkManager.performRequest()
+                        .frame(width: 300, height: 200, alignment: .center)
+                        .border(Color.white, width: 0.3)
+                        .padding(.all)
+                    
+                        // Additional weather information
+                        
+                            HStack {
+                                Text("Feels Like \(String(format: "%.1f", weather.main.feels_like - 273.15))°C")
+                                    .font(.headline.monospaced())
+                                    .fontWeight(.light)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300, height: 50, alignment: .center)
+                                    .containerShape(
+                                        RoundedRectangle(cornerRadius: 20, style: .continuous))
+                                    .border(Color.white, width: 0.5)
+                                    
                             }
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            HStack {
+                                Text("Max Temp \(String(format: "%.1f", weather.main.temp_max - 273.15))°C")
+                                    .font(.headline.monospaced())
+                                    .fontWeight(.light)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300, height: 50, alignment: .center)
+                                    .border(Color.white, width: 0.5)
+                                    .containerShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            HStack {
+                                Text("Min Temp \(String(format: "%.1f", weather.main.temp_min - 273.15))°C")
+                                    .font(.headline.monospaced())
+                                    .fontWeight(.light)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300, height: 50, alignment: .center)
+                                    .border(Color.white, width: 0.5)
+                                    .containerShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            HStack {
+                                Text("Humidity \(weather.main.humidity)%")
+                                    .font(.headline.monospaced())
+                                    .fontWeight(.light)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300, height: 50, alignment: .center)
+                                    .border(Color.white, width: 0.5)
+                                    .containerShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            HStack {
+                                Text("Pressure \(weather.main.pressure) hPa")
+                                    .font(.headline.monospaced())
+                                    .fontWeight(.light)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300, height: 50, alignment: .center)
+                                    .border(Color.white, width: 0.5)
+                                    .containerShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                            HStack {
+                                Text("Wind Speed \(weather.wind.speed) m/s")
+                                    .font(.headline.monospaced())
+                                    .fontWeight(.light)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 300, height: 50, alignment: .center)
+                                    .border(Color.white, width: 0.5)
+                                    .containerShape(RoundedRectangle(cornerRadius: 10))
+                            }
+                            .padding(EdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0))
+                        
                     }
+                    .padding()
                 }
+            } else {
+                // Message displayed while loading weather data
+                Text("Loading weather...")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .onAppear {
+                        // Trigger the weather request
+                        networkManager.performRequest()
+                    }
             }
-//            .clipShape(RoundedRectangle(cornerRadius: 30))
         }
+    }
 }
-   
 
 #Preview {
-    WeatherView(networkManager: NetworkManager())
+    WeatherView()
 }

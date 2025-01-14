@@ -3,83 +3,57 @@
 //  HelloWorld
 import Foundation
 
+@MainActor
+class NetworkManager: ObservableObject, Sendable {
+    
+    @Published var weatherData: WeatherData? = nil // 날씨 데이터
 
-class NetworkManager: ObservableObject {
-    
-    @Published var weatherData: WeatherData? // 날씨 데이터 
 
-    
-    // Function to handle different client errors
-    func handleClientError(error: Error) {
-        if let urlError = error as? URLError {
-            switch urlError.code {
-                case .notConnectedToInternet:
-                    print("No internet connection.")
-                case .timedOut:
-                    print("Request timed out.")
-                case .unsupportedURL:
-                    print("Unsupported URL.")
-                case .cannotFindHost:
-                    print("Cannot find host.")
-                default:
-                    print("Client error: \(urlError.localizedDescription)")
-            }
-        } else {
-            // Handle general errors
-            print("Error: \(error.localizedDescription)")
-        }
-    }
-    
     // Function to perform the network request
     func performRequest() {
         
-        // 현재 사는 도시와 현재 날씨를 요청하는 API
-        
-        let APIKey = "5216bebfb752c543e6fc2511536074c7"
+        let APIKey: String = "5216bebfb752c543e6fc2511536074c7"
         let cityName = "Seoul"
         
-        
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(APIKey)")!
-        
-        
+        // 현재 사는 도시와 현재 날씨를 요청하는 API
+        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(APIKey)") else {
+            return
+        }
         
         // Create a URLSession data task
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-
-            // Check for a valid response
+        let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+            
+            // 올바른 데이터 요청인지 검사하는 optional binding
             guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
                 print("Server error: \(response.debugDescription)")
                 return
             }
             
-            // Unwrap the data
+            // 데이터
             if let data = data {
                 do {
                     // JSON 디코딩
                     let decodedData = try JSONDecoder().decode(WeatherData.self, from: data)
                     
-                    // 비동기 처리
                     DispatchQueue.main.async {
-                        self.weatherData = decodedData
-                        print("Weather data successfully fetched: \(decodedData)")
+                        self?.weatherData = decodedData
+                        print("Weather data updated: \(decodedData)")
                     }
                 } catch {
-                    // 에러 처리 - JSON 파일 디코딩 실패시에 나타나는 문구
-                    print("Failed to decode JSON: \(error.localizedDescription)")
+                    
+                    print("Error decoding JSON: \(error)")
                 }
             }
             
-            // 에러 검사 
-            if let error = error  {
-                self.handleClientError(error: error)
+            if let error = error {
+                
                 return
             }
+            
+            
         }
-        
-        
         // Start the task
         task.resume()
     }
 }
-
 

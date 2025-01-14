@@ -7,10 +7,9 @@ struct WeatherData: Decodable {
     let weather: [Weather]
     let name: String
     let wind: Wind
-    let sys: Sys
 }
 
-struct Main: Codable {
+struct Main: Decodable {
     let temp: Double
     let feels_like: Double
     let temp_min: Double
@@ -30,8 +29,3 @@ struct Wind: Decodable {
     let speed: Double
 }
 
-struct Sys: Decodable {
-    let country: String
-    let sunrise: Int
-    let sunset: Int
-}

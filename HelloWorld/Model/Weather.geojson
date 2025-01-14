@@ -2,42 +2,46 @@
     "coord": {
     "lon": 126.9778,
     "lat": 37.5683
-  },
+    },
   "weather": [
       {
-      "id": 802,
-      "main": "Clouds",
-      "description": "scattered clouds",
-      "icon": "03n"
-    }
+          "id": 802,
+          "main": "Clouds",
+          "description": "scattered clouds",
+          "icon": "03n"
+      }
   ],
   "base": "stations",
-  "main": {
-    "temp": 299.89,
-    "feels_like": 301.51,
-    "temp_min": 299.81,
-    "temp_max": 299.91,
-    "pressure": 1011,
-    "humidity": 69,
-    "sea_level": 1011,
-    "grnd_level": 1005
-  },
+    "main":
+        {
+            "temp": 299.89,
+            "feels_like": 301.51,
+            "temp_min": 299.81,
+            "temp_max": 299.91,
+            "pressure": 1011,
+            "humidity": 69,
+            "sea_level": 1011,
+            "grnd_level": 1005
+        },
   "visibility": 10000,
-  "wind": {
-    "speed": 3.6,
-    "deg": 320
-  },
-  "clouds": {
-    "all": 40
-  },
+  "wind":
+      {
+        "speed": 3.6,
+        "deg": 320
+      },
+    "clouds":
+        {
+            "all": 40
+        },
   "dt": 1725359402,
-  "sys": {
-    "type": 1,
-    "id": 8105,
-    "country": "KR",
-    "sunrise": 1725311047,
-    "sunset": 1725357555
-  },
+  "sys":
+      {
+        "type": 1,
+        "id": 8105,
+        "country": "KR",
+        "sunrise": 1725311047,
+        "sunset": 1725357555
+      },
   "timezone": 32400,
   "id": 1835848,
   "name": "Seoul",
