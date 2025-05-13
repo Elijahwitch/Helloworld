@@ -2,8 +2,7 @@ import SwiftUI
 
 struct WeatherView: View {
     
-   
-    @StateObject var networkManager = NetworkManager() // 인터넷에 연결해 날씨데이터를 가져오는 상태 변수 networkManager
+    @StateObject var networkManager = NetworkManager() // 인터넷에 연결해 날씨데이터를 가져오는 상태 변수 StateObject networkManager
     private var currentDate = Date() // Current date, 현재 날짜를 저장하는 변수 인스턴스
     
     // Date formatter for displaying the date
@@ -12,8 +11,11 @@ struct WeatherView: View {
         formatter.dateStyle = .full
         return formatter
     }()
+    
     var body: some View {
+       
         if let weather = networkManager.weatherData {
+            
             VStack(alignment: .center, spacing: 20) {
                 // Current date, 현재 날짜,년도 - 월 - 일
                 HStack {
@@ -29,6 +31,7 @@ struct WeatherView: View {
                         .font(.title.monospaced())
                         .fontWeight(.bold)
                         .foregroundStyle(.black)
+                    
                     // 기온
                     Text("\(String(format: "%.1f", weather.main.temp - 273.15))°C")
                         .font(.largeTitle)
@@ -133,6 +136,7 @@ struct WeatherView: View {
             .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
             
             Button(action: {
+                self.networkManager.weatherData = nil // Clear old data
                 self.networkManager.performRequest()
             }) {
                 // 새로고침 버튼
@@ -158,8 +162,9 @@ struct WeatherView: View {
             }
             .padding(.all)
             .onAppear {
-                // Trigger the weather request
-                networkManager.performRequest()
+                if networkManager.weatherData == nil {
+                    networkManager.performRequest()
+                }
             }
         }
     }

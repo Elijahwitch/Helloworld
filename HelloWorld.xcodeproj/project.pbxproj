@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A300CD52C45036600509F18 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 6A300CD42C45036600509F18 /* Podfile */; };
 		6A58F68E2C3FBF2200C9870F /* HelloWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A58F68D2C3FBF2200C9870F /* HelloWorldApp.swift */; };
 		6A58F6922C3FBF2300C9870F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A58F6912C3FBF2300C9870F /* Assets.xcassets */; };
 		6A58F6952C3FBF2300C9870F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A58F6942C3FBF2300C9870F /* Preview Assets.xcassets */; };
@@ -17,7 +16,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6A300CD42C45036600509F18 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		6A58F68A2C3FBF2200C9870F /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A58F68D2C3FBF2200C9870F /* HelloWorldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldApp.swift; sourceTree = "<group>"; };
 		6A58F6912C3FBF2300C9870F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -52,7 +50,6 @@
 		6A58F6812C3FBF2200C9870F = {
 			isa = PBXGroup;
 			children = (
-				6A300CD42C45036600509F18 /* Podfile */,
 				6A58F68C2C3FBF2200C9870F /* HelloWorld */,
 				6A58F68B2C3FBF2200C9870F /* Products */,
 			);
@@ -72,8 +69,8 @@
 				6A19C0B42C7F4639008EDCC4 /* Model */,
 				6A58F68D2C3FBF2200C9870F /* HelloWorldApp.swift */,
 				6A7DCBE12CD8984C00955F62 /* WeatherView.swift */,
-				6A58F6932C3FBF2300C9870F /* Preview Content */,
 				6A58F6912C3FBF2300C9870F /* Assets.xcassets */,
+				6A58F6932C3FBF2300C9870F /* Preview Content */,
 			);
 			path = HelloWorld;
 			sourceTree = "<group>";
@@ -151,7 +148,6 @@
 			files = (
 				6A58F6952C3FBF2300C9870F /* Preview Assets.xcassets in Resources */,
 				6A58F6922C3FBF2300C9870F /* Assets.xcassets in Resources */,
-				6A300CD52C45036600509F18 /* Podfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

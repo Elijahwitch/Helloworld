@@ -3,7 +3,6 @@
 //  HelloWorld
 import Foundation
 
-
 @MainActor
 class NetworkManager: ObservableObject, Sendable {
     
@@ -11,10 +10,8 @@ class NetworkManager: ObservableObject, Sendable {
     
     // API key and cityame
     let APIKey: String = "5216bebfb752c543e6fc2511536074c7"
-    let cityName = "Seoul"
+    let cityName = "New York"
     
-    
-        
     // 특정 URL로부터 데이터를 가져오는 함수
     func performRequest() {
         // openweather API key와 소재 지명이 포함된 URL주소
@@ -48,6 +45,8 @@ class NetworkManager: ObservableObject, Sendable {
                     DispatchQueue.main.async {
                         self?.weatherData = decodedData
                         print("Weather data updated: \(decodedData)")
+                        print("Temp Max: \(decodedData.main.temp_max), Temp Min: \(decodedData.main.temp_min)")
+
                     }
                 } catch {
                     print("Error decoding JSON: \(error)")
