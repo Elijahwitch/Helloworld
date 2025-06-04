@@ -10,7 +10,7 @@ class NetworkManager: ObservableObject, Sendable {
     
     // API key and cityame
     let APIKey: String = "5216bebfb752c543e6fc2511536074c7"
-    let cityName = "Seoul"
+    let cityName = "New York"
     
     // 특정 URL로부터 데이터를 가져오는 함수
     func performRequest() {
